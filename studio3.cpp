@@ -37,7 +37,6 @@ int main (int argc, char *argv[])
   }    
        
   try {         
-       
     // Pass the current and last index to use, and the array, to the  
     // expression parsing function, and store the result.    
        
@@ -51,7 +50,6 @@ int main (int argc, char *argv[])
     return static_cast<int>(Result_Code::success);   
   }    
   catch (Result_Code rc)  {         
-       
     cout << "caught ";
     switch (rc) {
     case Result_Code::unexpected_end_of_expression:
@@ -65,12 +63,10 @@ int main (int argc, char *argv[])
       break;
     }
 
-    cout << endl;    
-
+    cout << endl;
     return static_cast<int>(rc);  
   }    
   catch (...)  {         
-       
     cout << "caught exception" << endl;    
     return static_cast<int>(Result_Code::unknown_exception);  
   }    
@@ -78,52 +74,37 @@ int main (int argc, char *argv[])
   
 // Helper function to print out the program's usage message. 
 void usage (char * program_name) {         
-       
   cout << "Usage: " << program_name << " <argument> [<argument>]..." << endl   
        << "Purpose: computes program arguments as prefix addition expression"  
        << endl; 
-       
 }      
-       
-       
+
 // Helper function to parse the input symbols and compute a value.    
-int parse_and_compute (int & current_index, int last_index, char *argv[]) {    
-       
+int parse_and_compute (int & current_index, int last_index, char *argv[]) {
   // make sure we're still in the argument range    
   if (current_index > last_index) {        
     throw Result_Code::unexpected_end_of_expression;
-  }         
-       
-       
+  }
+    
   // look for a single-symbol addition operator     
-  if (strlen (argv[current_index]) == 1 && 
-      *(argv[current_index]) == '+') {     
-       
-        int first_operand =       
-  parse_and_compute (++current_index,      
-   last_index, argv);    
-       
-        int second_operand =      
-  parse_and_compute (current_index,        
-   last_index, argv);    
-       
+  if (strlen (argv[current_index]) == 1 && *(argv[current_index]) == '+') {     
+        int first_operand = parse_and_compute (++current_index, last_index, argv);
+        int second_operand = parse_and_compute (current_index, last_index, argv);
         return first_operand + second_operand;      
   }    
        
   // look for an integer at the current position in the command line
   else {        
-       
       // make sure the command line argument is a well formed unsigned integer
     for (unsigned int i = 0; i < strlen(argv[current_index]); ++i) {        
-	if (!isdigit(argv[current_index][i])) {
+	    if (!isdigit(argv[current_index][i])) {
             throw Result_Code::bad_arg;
-	  }
+	    }
     }         
-       
+
     int result; 
     istringstream iss (argv[current_index++]);        
     iss >> result;         
     return result;       
-       
-  }  
+  }
 }
