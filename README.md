@@ -14,8 +14,6 @@ You may complete this studio individually or in a small group.
 
 If you need a refresher on the environment setup steps from the previous studio, see [Studio 0](https://github.com/cse4208-wustl/studio0).
 
-The lecture material for this studio is available in [assets/Control_Flow_and_Debugging.pptx](assets/Control_Flow_and_Debugging.pptx).
-
 ## Exercises
 
 Record your answers in `ANSWERS.md` as you work. Include the names of everyone who worked on the studio in your first answer, and number your responses so they are easy to match to the exercises.
