@@ -102,11 +102,11 @@ Record your answers in `ANSWERS.md` as you work. Include the names of everyone w
    - the position index of the current command-line argument being parsed
    - the C-style string corresponding to that command-line argument
 
-   In your answers, show the values that were displayed.
+   In your answers, show the `print` commands you used and the values that were displayed.
 
 ### Part 3: Exceptions and Stack Unwinding
 
-These exercises use the same program and debugger session. They connect what you read about exception handling to observable behavior in the debugger.
+These exercises connect what you read about exception handling to observable behavior in the debugger.
  
 8. Read through `studio3.cpp` and locate:
    - the two `throw` statements in `parse_and_compute`
@@ -114,15 +114,15 @@ These exercises use the same program and debugger session. They connect what you
    - the `catch (...)` block
    In your answers, describe in one sentence what condition each `throw` detects, and what exception object is thrown.
 
-9. Set a breakpoint on the line containing `throw Result_Code::unexpected_end_of_expression`:
+9. Exit the current debugging session (`quit`) and start a new one. Set a breakpoint on the line containing `throw Result_Code::unexpected_end_of_expression`:
    ```
-   break studio3.cpp:84
+   break studio3.cpp:86
    ```
  
    *(Adjust the line number if needed — find the exact line in your editor.)*
    Run the program with an invalid expression that will trigger this exception, for example, one that is missing its final integer:
    ```
-   run + 1 + 2 3
+   run + 1 + 2 + 3
    ```
  
    When the breakpoint is hit, display the call stack with `where`. In your answers:
@@ -130,9 +130,9 @@ These exercises use the same program and debugger session. They connect what you
    - How many frames of `parse_and_compute` are present?
    - What does that tell you about how deeply the recursion had gone before the throw?
 
-10. Now set a breakpoint at the start of the `catch` block in `main`: the line beginning with `cout << "caught "` (adjust the line number if needed), then continue execution:
+10. Now set a breakpoint just inside the `catch` block in `main`: the line beginning with `cout << "caught "` (adjust the line number if needed), then continue execution:
     ```
-    break studio3.cpp:52
+    break studio3.cpp:53
     continue
     ```
  
@@ -148,8 +148,12 @@ These exercises use the same program and debugger session. They connect what you
  
     In your answers, show the printed value. What type is `rc`, and how does the program use its value after catching it?
 
-12. **Normal return vs. exception unwinding.** Restart the debugger with a valid expression. Set a breakpoint on the line `return first_operand + second_operand` in `parse_and_compute`. Each time it is hit, use `where` to observe the call stack, then `continue` to the next hit.
-    In your answers, describe how the call stack changes across these successive breakpoint hits. How does this frame-by-frame shrinking compare to what you observed in exercise 10, where all the intermediate frames disappeared at once?
+12. **Normal return vs. exception unwinding.** Quit the current debugger session (`quit`) and start a new one(`gdb studio3`). Set a breakpoint on the line `return first_operand + second_operand` in `parse_and_compute`. Run the program with the following valid expression:
+```
+run + + + + 1 2 3 4 5
+```
+    Each time the breakpoint is hit, use `where` to observe the call stack, then `continue` to the next hit.
+    In your answers, describe how the call stack changes across these successive breakpoint hits. How does this compare to what you observed in exercise 10?
 
 
 13. **The `catch (...)` block.** Look at the `catch (...)` block in `main`. In your answers:
