@@ -130,18 +130,12 @@ These exercises connect what you read about exception handling to observable beh
    - How many frames of `parse_and_compute` are present?
    - What does that tell you about how deeply the recursion had gone before the throw?
 
-10. Now set a breakpoint just inside the `catch` block in `main`: the line beginning with `cout << "caught "` (adjust the line number if needed), then continue execution:
-    ```
-    break studio3.cpp:53
-    continue
-    ```
- 
-    When this breakpoint is hit, display the call stack again with `where`. In your answers:
+10. Use `next` command three times to execute the next instructions. After each `next`, use `where` to display the call stack. In your answers:
     - Show the call stack output
     - How many frames are present now, compared to exercise 9?
     - This change in the call stack is stack unwinding. In your own words, describe what happened to the intermediate `parse_and_compute` frames between the throw and the catch.
 
-11. While stopped at the `catch` block, print the value of the exception object:
+11. You should now be stopped in the `catch` block. Display the value of the exception object:
     ```
     print rc
     ```
