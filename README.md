@@ -160,7 +160,7 @@ run + + + + 1 2 3 4 5
 
    In your answers, note any interesting observations, including whether you were able to step all the way down into assembly code for functions that come from the C++ libraries rather than the program's own source.
 
-2. Repeat any of the required or optional exercises using a debugger from VS Code. Your repository contains a .vscode directory with the configurations this debugger will need.
+2. Repeat any of the required or optional exercises using a debugger from VS Code. 
 
    In your answers, describe briefly what you did and any useful features VS Code provided when debugging the program.
 
