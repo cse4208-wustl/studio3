@@ -143,11 +143,12 @@ These exercises connect what you read about exception handling to observable beh
     In your answers, show the printed value. What type is `rc`, and how does the program use its value after catching it?
 
 12. **Normal return vs. exception unwinding.** Quit the current debugger session (`quit`) and start a new one(`gdb studio3`). Set a breakpoint on the line `return first_operand + second_operand` in `parse_and_compute`. Run the program with the following valid expression:
-```
-run + + + + 1 2 3 4 5
-```
-Each time the breakpoint is hit, use `where` to observe the call stack, then `continue` to the next hit.
-In your answers, describe how the call stack changes across these successive breakpoint hits. How does this compare to what you observed in exercise 10?
+  ```
+  run + + + + 1 2 3 4 5
+  ```
+
+  Each time the breakpoint is hit, use `where` to observe the call stack, then `continue` to the next hit.
+  In your answers, describe how the call stack changes across these successive breakpoint hits. How does this compare to what you observed in exercise 10?
 
 
 13. **The `catch (...)` block.** Look at the `catch (...)` block in `main`. In your answers:
